@@ -7,14 +7,18 @@ import javax.swing.ActionMap;
 import javax.swing.Action;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import javax.swing.KeyStroke;
+
 
 public class Character{
 	String name;
 	private int health;
+	private int maxhealth;
 
 	public Character(String s, int hp){
 		name = s;
 		health= hp;
+		maxhealth = hp
 	}
 
 	public void loseHP(int dmg){
@@ -90,6 +94,7 @@ public class Brawler extends Character{
 	Brawler
 
 */
+//https://stackoverflow.com/questions/20844144/how-do-i-make-a-rectangle-move-across-the-screen-with-key-bindings/20844242#20844242
 
 public class Dragon{
 
@@ -139,24 +144,26 @@ public class RandomGame{
 		//create character
         if(slection.equals("Mage")){
             player = new Mage(name);
-            player.setHealth();
+            player.setHealth(3000);
         }
         if(slection.equals("Knight")){
             player = new Mage(name);
-            player.setHealth();
+            player.setHealth(5000);
         }
         if(slection.equals("Ranger")){
             player = new Mage(name);
-            player.setHealth();
+            player.setHealth(4000);
         }
         if(slection.equals("Druid")){
             player = new Mage(name);
-            player.setHealth();
+            player.setHealth(3500);
         }
         if(slection.equals("Brawler")){
             player = new Mage(name);
-            player.setHealth();
+            player.setHealth(4500);
         }
+
+        comp.addKeyListener(new KeyListener());
 
 
 
@@ -168,19 +175,18 @@ public class RandomGame{
 
 	/*Function to set up a new game by creating the appropriate key bindings*/	
 	public void newGame(Character play, Dragon boss){
-		component = 
-		actions= new ActionMap();
-		inputs = new InputMap();
+		actions= comp.getActionMap();
+		inputs = comp.getInputMap();
 
 		component.getInputMap().put(KeyStroke.getKeyStroke("1"),
                             "basic");
 		component.getActionMap().put("basic",
-	                             basic(boss));
+	                             basic_attak);
 
 		component.getInputMap().put(KeyStroke.getKeyStroke("5"),
                             "healthRegen");
 		component.getActionMap().put("healthRegen",
-                             play.gainHP(150));
+                             regen);
 
 		/*Set up Key bindings */
 		if (play instanceof Mage){
@@ -188,15 +194,15 @@ public class RandomGame{
 			component.getInputMap().put(KeyStroke.getKeyStroke("2"),
 	                            "FlameStrike");
 			component.getActionMap().put("FlameStrike",
-	                             flamestrike(boss));
+	                             attackFS);
 			component.getInputMap().put(KeyStroke.getKeyStroke("3"),
 	                            "FrostNova");
 			component.getActionMap().put("FrostNova",
-	                             frost_nova(boss));
+	                             attackFN);
 			component.getInputMap().put(KeyStroke.getKeyStroke("4"),
                             "ArcaneBlast");
 			component.getActionMap().put("ArcaneBlast",
-	                             arcane_blast(boss));
+	                             attackAB);
 			Mage.intro();
 
 		}
@@ -205,15 +211,15 @@ public class RandomGame{
 			component.getInputMap().put(KeyStroke.getKeyStroke("2"),
 	                            "DivineStrength");
 			component.getActionMap().put("DivineStrength",
-	                             divine_strength(boss));
+	                             attackDS);
 			component.getInputMap().put(KeyStroke.getKeyStroke("3"),
 	                            "HammerOfWrath");
 			component.getActionMap().put("HammerOfWrath",
-	                             hammer_of_wrath(boss));
+	                             attackHoW);
 			component.getInputMap().put(KeyStroke.getKeyStroke("4"),
                             "DesperateStand");
 			component.getActionMap().put("DesperateStand",
-	                             desperate_stand(boss));
+	                             attackDes);
 			Knight.intro();
 
 		}
@@ -280,6 +286,17 @@ public class RandomGame{
 			bitString += "1";
 		}
 	}
+    Action regen = new AbstractAction(){
+        public void basic(){
+            if(player.getHP() <= (player.maxHP()/2)){
+                bitString += "1";
+            }
+            else{
+                bitString += "0";
+            }
+            play.gainHP(75);
+        }
+    }
 
 	//Mage
 	Action attackFS= new AbstractAction(){
@@ -322,13 +339,10 @@ public class RandomGame{
 
 	public String battle(Character player, Dragon boss){
 		int attack;
+		int counter = 0;
 		bitString = "";
 		while(boss.getHp() > 0){
-
-			
-
-
-
+		    //https://stackoverflow.com/questions/18037576/how-do-i-check-if-the-user-is-pressing-a-key
 		}
 
 	}
