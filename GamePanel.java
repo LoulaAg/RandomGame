@@ -102,98 +102,98 @@ public class GamePanel extends JPanel
 			bitString += "1";
 		}};
 
-		comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0),
+		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0),
                             "basic");
-		comp.getActionMap().put("basic",
+		message.getActionMap().put("basic",
 	                             basic_attack);
 
-		comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0),
+		message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0),
                             "healthRegen");
-		comp.getActionMap().put("healthRegen",
+		message.getActionMap().put("healthRegen",
                              regen);
 
 		/*Set up Key bindings */
 		if (player instanceof Mage){
 			
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "FlameStrike");
-			comp.getActionMap().put("FlameStrike",
+			message.getActionMap().put("FlameStrike",
 	                             attackFS);
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "FrostNova");
-			comp.getActionMap().put("FrostNova",
+			message.getActionMap().put("FrostNova",
 	                             attackFN);
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "ArcaneBlast");
-			comp.getActionMap().put("ArcaneBlast",
+			message.getActionMap().put("ArcaneBlast",
 	                             attackAB);
 			Mage.intro();
 
 		}
 		if (player instanceof Knight){
 			
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "DivineStrength");
-			comp.getActionMap().put("DivineStrength",
+			message.getActionMap().put("DivineStrength",
 	                             attackDS);
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "HammerOfWrath");
-			comp.getActionMap().put("HammerOfWrath",
+			message.getActionMap().put("HammerOfWrath",
 	                             attackHoW);
-			comp.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "DesperateStand");
-			comp.getActionMap().put("DesperateStand",
+			message.getActionMap().put("DesperateStand",
 	                             attackDes);
 			Knight.intro();
 
 		}/*
 		if (play instanceof Ranger){
 			
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
 			Ranger.intro();
 
 		}
 		if (play instanceof Druid){
 			
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
 			Druid.intro();
 
 		}
 		if (play instanceof Brawler){
 			
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
-			comp.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "healthRegen");
-			comp.getActionMap().put("healthRegen",
+			message.getActionMap().put("healthRegen",
 	                             play.gainHP(150));
 			Brawler.intro();
 
