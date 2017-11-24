@@ -14,12 +14,12 @@ import java.awt.event.KeyEvent;
 
 public class GamePanel extends JPanel
 {
-	Character player;
-	Dragon boss;
+	static Character player;
+	static Dragon boss;
 	static String bitString;
 	static GamePanel comp;
 	//JComponent comp;
-	private JLabel message = new JLabel("CHANGE WITH KEY EVENTS", SwingConstants.CENTER);
+	private JLabel message = new JLabel("Dragon Fight!", SwingConstants.CENTER);
 	public GamePanel(Character play, Dragon dragoon)
 	{
 		this.add(message);
@@ -38,6 +38,8 @@ public class GamePanel extends JPanel
 			public void actionPerformed(ActionEvent e){
 				boss.loseHP(50);
 				bitString += "1";
+				System.out.println("Basic Attack!");
+				//this.add(message); 
 			}
 		};
 	    Action regen = new AbstractAction(){
@@ -57,14 +59,20 @@ public class GamePanel extends JPanel
 		Action attackFS= new AbstractAction(){
 		@Override	
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(100);
-			bitString += "1";
+			if(player.getPower()> 10){
+				boss.loseHP(100);
+				player.usePower(10);
+			}
+			bitString += "0";
 		}};
 
 		Action attackFN = new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(150);
+			if(player.getPower()> 20){
+				boss.loseHP(250);
+				player.usePower(20);
+			}
 			bitString += "0";
 		} };
 
@@ -73,8 +81,11 @@ public class GamePanel extends JPanel
 		Action attackAB= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(200);
-			bitString += "0";
+			if(player.getPower()> 50){
+				boss.loseHP(600);
+				player.usePower(50);
+			}
+			bitString += "1";
 		}};
 
 		//Knight
@@ -102,99 +113,174 @@ public class GamePanel extends JPanel
 			bitString += "1";
 		}};
 
+		//Ranger
+
+		Action attackDSh= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(150);
+			bitString += "0";
+		}};
+
+
+		Action attackFoK= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(150);
+			bitString += "0";
+		}};
+
+		Action attackCOTW= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(200);
+			bitString += "1";
+		}};
+
+		//DRUID
+
+		Action attackSW= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(100);
+			System.out.println("SolarWrath");
+			bitString += "0";
+		}};
+
+		Action attackLS= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(150);
+			bitString += "0";
+		}};
+
+		Action attackSF= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(200);
+			bitString += "1";
+		}};
+
+		//BRAWLER
+
+		Action attackFSK= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(100);
+			bitString += "0";
+		}};
+
+		Action attackWDP= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(150);
+			bitString += "0";
+		}};
+
+		Action attackMS= new AbstractAction(){
+		@Override
+		public void actionPerformed(ActionEvent e){
+			boss.loseHP(200);
+			bitString += "1";
+		}};
+
+
 		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0),
                             "basic");
 		message.getActionMap().put("basic",
 	                             basic_attack);
 
-		message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0),
+		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0),
                             "healthRegen");
 		message.getActionMap().put("healthRegen",
                              regen);
-
 		/*Set up Key bindings */
-		if (player instanceof Mage){
+		
+		System.out.println(player.getInst());
+		/*
+		if (player.getInst().equals("MAGE")){
 			
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "FlameStrike");
 			message.getActionMap().put("FlameStrike",
 	                             attackFS);
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "FrostNova");
 			message.getActionMap().put("FrostNova",
 	                             attackFN);
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "ArcaneBlast");
 			message.getActionMap().put("ArcaneBlast",
 	                             attackAB);
-			Mage.intro();
+			//Mage.intro();
 
 		}
-		if (player instanceof Knight){
+		if (player.getInst().equals("KNIGHT")){
 			
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "DivineStrength");
 			message.getActionMap().put("DivineStrength",
 	                             attackDS);
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
 	                            "HammerOfWrath");
 			message.getActionMap().put("HammerOfWrath",
 	                             attackHoW);
-			message.getInputMap(WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
                             "DesperateStand");
 			message.getActionMap().put("DesperateStand",
 	                             attackDes);
 			Knight.intro();
 
-		}/*
-		if (play instanceof Ranger){
+		}
+		if (player.getInst().equals("RANGER")){
 			
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
-                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+	                            "DeadlyShot");
+			message.getActionMap().put("DeadlyShot",
+	                             attackDSh);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+	                            "FanOfKnives");
+			message.getActionMap().put("FanOfKnives",
+	                             attackFoK);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+                            "CallOfTheWild");
+			message.getActionMap().put("CallOfTheWild",
+	                             attackCOTW);
 			Ranger.intro();
 
 		}
-		if (play instanceof Druid){
+		//System.out.println(player getInstof Druid);
+		if (player.getInst().equals("DRUID")){
 			
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
-                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+	                            "SunWrath");
+			message.getActionMap().put("SunWrath",
+	                             attackSW);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+	                            "LunarStrike");
+			message.getActionMap().put("LunarStrike",
+	                             attackLS);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+                            "StarFall");
+			message.getActionMap().put("StarFall",
+	                             attackSF);
 			Druid.intro();
 
 		}
-		if (play instanceof Brawler){
+		if (player.getInst().equals("BRAWLER")){
 			
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
-	                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
-			message.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
-                            "healthRegen");
-			message.getActionMap().put("healthRegen",
-	                             play.gainHP(150));
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+	                            "FlyingSerpeantKick");
+			message.getActionMap().put("FlyingSerpeantKick",
+	                             attackFSK);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+	                            "WhirlingDragonPunch");
+			message.getActionMap().put("WhirlingDragonPunch",
+	                             attackWDP);
+			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+                            "MortalStrike");
+			message.getActionMap().put("MortalStrike",
+	                             attackMS);
 			Brawler.intro();
 
 		}*/
@@ -215,10 +301,12 @@ public class GamePanel extends JPanel
 		
 		f.add(comp);
 		
-		f.setSize(200,100);
+		f.setSize(800,400);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-
+		System.out.println("Here");
+		RandomGame.battle(player, boss);
+		System.out.println(bitString);
 		return bitString;
 	}
 	/*

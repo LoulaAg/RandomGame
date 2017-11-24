@@ -45,25 +45,23 @@ public class RandomGame{
         String selection = scan.nextLine();
 		//create character
         if(selection.equals("Mage")){
-            player = new Mage(name, 3000);
+            player = new Mage(name, 3000, 500);
         }
         if(selection.equals("Knight")){
-            player = new Mage(name, 5000);
+            player = new Knight(name, 5000, 300);
         }
         if(selection.equals("Ranger")){
-            player = new Mage(name, 4000);
+            player = new Ranger(name, 4000, 400);
         }
         if(selection.equals("Druid")){
-            player = new Mage(name, 3000);
+            player = new Druid(name, 3000, 450);
         }
         if(selection.equals("Brawler")){
-            player = new Mage(name, 45000);
+            player = new Brawler(name, 45000, 350);
         }
+        //System.out.println(player.getInst());
 
        // comp.addKeyListener(new KeyListener());
-
-
-
 		newGame();
 
 
@@ -74,8 +72,15 @@ public class RandomGame{
 	public static void newGame(){
 		//actions= comp.getActionMap();
 		//inputs = comp.getInputMap();
-		GamePanel.setup(player, boss);
-		
+		boss= new Dragon();
+		bitString = GamePanel.setup(player, boss);
+		System.out.println("After Setup" + bitString);
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+              new FileOutputStream("RandomBitString.txt"), "utf-8"))) {
+		   writer.write(bitString);
+		} catch(IOException e){
+			System.out.println("Error Writing to file!");
+		}
 
 	}
 
@@ -87,15 +92,18 @@ public class RandomGame{
 		return;
 	}
 */
-	public String battle(Character player, Dragon boss){
-		int attack;
-		int counter = 0;
+	public static void battle(Character player, Dragon boss){
+		//int attack;
+		//int counter = 0;
+		System.out.println("In Battle!");
 		bitString = "";
 		while(boss.getHP() > 0){
-
+			//System.out.print("");
+			player.gainPower(1);
 		    //https://stackoverflow.com/questions/18037576/how-do-i-check-if-the-user-is-pressing-a-key
 		}
-		return bitString;
+		//DISABLE KEYBINDING? or just ignore?
+		System.out.println("VICTORY!");
 	}
 
 }

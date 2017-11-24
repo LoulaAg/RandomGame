@@ -1,6 +1,9 @@
 public class Brawler extends Character{
-	public Brawler(String s, int hp){
-		super(s, hp);
+
+	//public String INSTANCE= "BRAWLER";
+
+	public Brawler(String s, int hp, int pow){
+		super(s, hp, pow, "BRAWLER");
 	}
 
 	public static void intro(){
