@@ -39,6 +39,7 @@ public class GamePanel extends JPanel
 				boss.loseHP(50);
 				bitString += "1";
 				System.out.println("Basic Attack!");
+				message.setText("Dragon's Health: " + boss.getHP());
 				//this.add(message); 
 			}
 		};
@@ -195,10 +196,9 @@ public class GamePanel extends JPanel
 		message.getActionMap().put("healthRegen",
                              regen);
 		/*Set up Key bindings */
+		//System.out.println(player.getInst());
 		
-		System.out.println(player.getInst());
-		/*
-		if (player.getInst().equals("MAGE")){
+		//if (player.getInst().equals("MAGE")){
 			
 			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
 	                            "FlameStrike");
@@ -214,7 +214,7 @@ public class GamePanel extends JPanel
 	                             attackAB);
 			//Mage.intro();
 
-		}
+		/*}
 		if (player.getInst().equals("KNIGHT")){
 			
 			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
