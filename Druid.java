@@ -20,7 +20,7 @@ public class Druid extends Character{
 		scan.nextLine();
 		System.out.println("You feel it calling you and yearn to answer it's call.");
 		scan.nextLine();
-		System.out.nextLine("Though you draw power from all things in the sky, the moon has always been special to you. A particularly strong source of power.");
+		System.out.println("Though you draw power from all things in the sky, the moon has always been special to you. A particularly strong source of power.");
 		scan.nextLine();
 		System.out.println("Everything is silent, as thought the world is holding its breath, as the moon slips into position.");
 		scan.nextLine();
