@@ -18,15 +18,18 @@ public class GamePanel extends JPanel
 	static Dragon boss;
 	static String bitString;
 	static GamePanel comp;
+	static userTimer timer;
+	static int time;
+
 	//JComponent comp;
 	private JLabel message = new JLabel("Dragon Fight!", SwingConstants.CENTER);
 	public GamePanel(Character play, Dragon dragoon)
 	{
 		this.add(message);
-		this.setupKeyShit();
 		player= play;
 		boss= dragoon;
 		bitString = "";
+		this.setupKeyShit();
 		//comp= jcomp;
 	}
 	
@@ -37,20 +40,17 @@ public class GamePanel extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e){
 				boss.loseHP(50);
-				bitString += "1";
+				time= timer.cancel();
+				bitString += Integer.toBinaryString(time);
 				System.out.println("Basic Attack!");
+				message.setText("Dragon's Health: " + boss.getHP());
 				//this.add(message); 
 			}
 		};
 	    Action regen = new AbstractAction(){
 	    	@Override
 	        public void actionPerformed(ActionEvent e){
-	            if(player.getHP() <= (player.maxHP()/2)){
-	                bitString += "1";
-	            }
-	            else{
-	                bitString += "0";
-	            }
+	            bitString += Integer.toBinaryString(time * 5);
 	            player.gainHP(75);
 	        }
 	    };
@@ -63,7 +63,8 @@ public class GamePanel extends JPanel
 				boss.loseHP(100);
 				player.usePower(10);
 			}
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 2);
 		}};
 
 		Action attackFN = new AbstractAction(){
@@ -73,7 +74,8 @@ public class GamePanel extends JPanel
 				boss.loseHP(250);
 				player.usePower(20);
 			}
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 3);
 		} };
 
 		//AcraneBlast
@@ -81,11 +83,12 @@ public class GamePanel extends JPanel
 		Action attackAB= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			if(player.getPower()> 50){
+			if(player.getPower()> 750){
 				boss.loseHP(600);
-				player.usePower(50);
+				player.usePower(75);
 			}
-			bitString += "1";
+			message.setText("Dragon's Health: " + boss.getHP() +'\t'+ player.name + " Health: " + player.getHP());
+			bitString += Integer.toBinaryString(time * 4);
 		}};
 
 		//Knight
@@ -93,24 +96,36 @@ public class GamePanel extends JPanel
 		Action attackDS= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(100);
-			bitString += "0";
+			if(player.getPower()> 10){
+				boss.loseHP(75);
+				player.usePower(10);
+			}
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 2);
 		}};
 
 		//Hammer of Wrath
 		Action attackHoW= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(150);
-			bitString += "0";
+			if(player.getPower()> 20){
+				boss.loseHP(180);
+				player.usePower(20);
+			}
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 3);
 		}};
 
 		//Desperate Stand
 		Action attackDes= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			boss.loseHP(200);
-			bitString += "1";
+			if(player.getPower()> 50){
+				boss.loseHP(250);
+				player.usePower(50);
+			}
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 4);
 		}};
 
 		//Ranger
@@ -119,7 +134,8 @@ public class GamePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(150);
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 2);
 		}};
 
 
@@ -127,14 +143,16 @@ public class GamePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(150);
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 3);
 		}};
 
 		Action attackCOTW= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(200);
-			bitString += "1";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 4);
 		}};
 
 		//DRUID
@@ -143,22 +161,24 @@ public class GamePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(100);
-			System.out.println("SolarWrath");
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 2);
 		}};
 
 		Action attackLS= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(150);
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 3);
 		}};
 
 		Action attackSF= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(200);
-			bitString += "1";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 4);
 		}};
 
 		//BRAWLER
@@ -167,21 +187,24 @@ public class GamePanel extends JPanel
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(100);
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 2);
 		}};
 
 		Action attackWDP= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(150);
-			bitString += "0";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 3);
 		}};
 
 		Action attackMS= new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
 			boss.loseHP(200);
-			bitString += "1";
+			message.setText("Dragon's Health: " + boss.getHP());
+			bitString += Integer.toBinaryString(time * 4);
 		}};
 
 
@@ -195,9 +218,8 @@ public class GamePanel extends JPanel
 		message.getActionMap().put("healthRegen",
                              regen);
 		/*Set up Key bindings */
+		//System.out.println(player.getInst());
 		
-		System.out.println(player.getInst());
-		/*
 		if (player.getInst().equals("MAGE")){
 			
 			message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
@@ -229,7 +251,7 @@ public class GamePanel extends JPanel
                             "DesperateStand");
 			message.getActionMap().put("DesperateStand",
 	                             attackDes);
-			Knight.intro();
+			//Knight.intro();
 
 		}
 		if (player.getInst().equals("RANGER")){
@@ -246,7 +268,7 @@ public class GamePanel extends JPanel
                             "CallOfTheWild");
 			message.getActionMap().put("CallOfTheWild",
 	                             attackCOTW);
-			Ranger.intro();
+			//Ranger.intro();
 
 		}
 		//System.out.println(player getInstof Druid);
@@ -264,7 +286,7 @@ public class GamePanel extends JPanel
                             "StarFall");
 			message.getActionMap().put("StarFall",
 	                             attackSF);
-			Druid.intro();
+			//Druid.intro();
 
 		}
 		if (player.getInst().equals("BRAWLER")){
@@ -281,9 +303,9 @@ public class GamePanel extends JPanel
                             "MortalStrike");
 			message.getActionMap().put("MortalStrike",
 	                             attackMS);
-			Brawler.intro();
+			//Brawler.intro();
 
-		}*/
+		}
 			//Generic
 		
 		}
@@ -298,13 +320,14 @@ public class GamePanel extends JPanel
 	{
 		JFrame f = new JFrame();
 		comp = new GamePanel(play, dragoon);
-		
+		timer= new userTimer();
 		f.add(comp);
 		
 		f.setSize(800,400);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
-		System.out.println("Here");
+		//System.out.println("Here");
+		timer.start();
 		RandomGame.battle(player, boss);
 		System.out.println(bitString);
 		return bitString;

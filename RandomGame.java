@@ -37,27 +37,32 @@ public class RandomGame{
         String name = scan.nextLine();
         System.out.println("Please choose a class for your character:");
         System.out.println("Your options are: \n" +
-                " Mage \n" +
-                " Knight \n" +
-                " Ranger \n" +
-                " Druid \n" +
-                " Brawler");
+                "M: Mage \n" +
+                "K: Knight \n" +
+                "R: Ranger \n" +
+                "D: Druid \n" +
+                "B: Brawler");
         String selection = scan.nextLine();
 		//create character
-        if(selection.equals("Mage")){
+        if(selection.equals("M")){
             player = new Mage(name, 3000, 500);
+            Mage.intro(scan);
         }
-        if(selection.equals("Knight")){
+        if(selection.equals("K")){
             player = new Knight(name, 5000, 300);
+            Knight.intro(scan);
         }
-        if(selection.equals("Ranger")){
+        if(selection.equals("R")){
             player = new Ranger(name, 4000, 400);
+            Ranger.intro(scan);
         }
-        if(selection.equals("Druid")){
+        if(selection.equals("D")){
             player = new Druid(name, 3000, 450);
+        	Druid.intro(scan);
         }
-        if(selection.equals("Brawler")){
+        if(selection.equals("B")){
             player = new Brawler(name, 45000, 350);
+            Brawler.intro(scan);
         }
         //System.out.println(player.getInst());
 
