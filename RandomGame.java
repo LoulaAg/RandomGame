@@ -45,23 +45,23 @@ public class RandomGame{
         String selection = scan.nextLine();
 		//create character
         if(selection.equals("M")){
-            player = new Mage(name, 3000, 500);
+            player = new Mage(name, 2000, 500);
             Mage.intro(scan);
         }
         if(selection.equals("K")){
-            player = new Knight(name, 5000, 300);
+            player = new Knight(name, 3000, 300);
             Knight.intro(scan);
         }
         if(selection.equals("R")){
-            player = new Ranger(name, 4000, 400);
+            player = new Ranger(name, 2500, 400);
             Ranger.intro(scan);
         }
         if(selection.equals("D")){
-            player = new Druid(name, 3000, 450);
+            player = new Druid(name, 2000, 450);
         	Druid.intro(scan);
         }
         if(selection.equals("B")){
-            player = new Brawler(name, 45000, 350);
+            player = new Brawler(name, 3000, 350);
             Brawler.intro(scan);
         }
         //System.out.println(player.getInst());
