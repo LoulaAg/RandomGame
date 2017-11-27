@@ -22,7 +22,7 @@ public class GamePanel extends JPanel
 	static int time;
 
 	//JComponent comp;
-	private JLabel message = new JLabel("Dragon Fight!", SwingConstants.CENTER);
+	private static JLabel message = new JLabel("Dragon Fight!", SwingConstants.CENTER);
 	public GamePanel(Character play, Dragon dragoon)
 	{
 		this.add(message);
@@ -358,6 +358,37 @@ public class GamePanel extends JPanel
 			//Generic
 		
 		}
+
+	public static void removeBinding(){
+		 Action nothing = new AbstractAction(){
+	    	@Override
+	        public void actionPerformed(ActionEvent e){
+	        }
+	    };
+	    message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_1, 0),
+                            "doNothing");
+		message.getActionMap().put("doNothing",
+	                             nothing);
+
+		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_5, 0),
+                            "doNothing");
+		message.getActionMap().put("doNothing",
+                             nothing);
+
+	    message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_2, 0),
+	                            "doNothing");
+		message.getActionMap().put("doNothing",
+	                             nothing);
+		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_3, 0),
+	                            "doNothing");
+		message.getActionMap().put("doNothing",
+	                             nothing);
+		message.getInputMap(JPanel.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_4, 0),
+                            "doNothing");
+		message.getActionMap().put("doNothing",
+	                             nothing);
+
+	}
 	
 	public void setMessage(String m)
 	{
@@ -378,6 +409,8 @@ public class GamePanel extends JPanel
 		//System.out.println("Here");
 		timer.start();
 		RandomGame.battle(player, boss);
+		removeBinding();
+		message.setText("VICTORY!");
 		//System.out.println(bitString);
 		return bitString;
 	}
