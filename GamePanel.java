@@ -77,10 +77,7 @@ public class GamePanel extends JPanel
 		Action attackFN = new AbstractAction(){
 		@Override
 		public void actionPerformed(ActionEvent e){
-			if(player.getPower()> 20){
-				boss.loseHP(250);
-				player.usePower(20);
-			}
+			boss.loseHP(250);
 			message.setText("Dragon's Health: " + boss.getHP() +"	"+ player.name + " Health: " + player.getHP());
 			time= timer.cancel();
 			bitString += Integer.toBinaryString(time * 3);

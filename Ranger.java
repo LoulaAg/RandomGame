@@ -12,9 +12,10 @@ public class Ranger extends Character{
 	}
 
 	public static void intro(Scanner scan){
-		System.out.println("The Rangers of forest Shannon have long protected the the forest and all who live in it.");
+		System.out.println("Press [ENTER] to progress through the story");
+		System.out.println("The Rangers of Forest Shannon have long protected the forest and all who live in it.");
 		scan.nextLine();
-		System.out.println("As their newest memeber, you are eager to prove yourself. Patrol duty does not seem like the best way to do so though. ");
+		System.out.println("As their newest memeber, you are eager to prove yourself. Patrol duty does not seem like the best way to do so though.");
 		scan.nextLine();
 		System.out.println("You scour the woods, ready to fight any evil.");
 		scan.nextLine();
@@ -22,7 +23,7 @@ public class Ranger extends Character{
 		scan.nextLine();
 		System.out.println("You reach for your bow as you turn to find the source of the noise. It is an elf.");
 		scan.nextLine();
-		System.out.println("\"Help! You must help us, a dragon is attacking our village!\", she calls to you.");
+		System.out.println("\"Help! You must help us, a dragon is attacking our village!\", she pleads to you.");
 		scan.nextLine();
 		System.out.println("This is your chance. \"Lead the way\" you say and spring into action, as you follow the elf to face your first foe.");
 		scan.nextLine();
